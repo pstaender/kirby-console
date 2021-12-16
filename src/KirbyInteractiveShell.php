@@ -25,9 +25,8 @@ class KirbyInteractiveShell
     private function shellConfig()
     {
         $shellConfig = self::$shell_config;
-        $shellConfig['startupMessage'] = "Kirby v".kirby()->version();
-        $config = new Configuration($shellConfig);
-        return $config;
+        $shellConfig['startupMessage'] = "Kirby v" . kirby()->version();
+        return new Configuration($shellConfig);
     }
 
 }
