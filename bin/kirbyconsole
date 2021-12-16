@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+<?php
+
+require getcwd() . '/kirby/bootstrap.php';
+require __DIR__ . '/../vendor/autoload.php';
+
+if ( php_sapi_name() !== 'cli') {
+    exit('This script is only allowed to run on cli');
+}
+
+new Kirby();
+
+(new Zeitpulse\KirbyInteractiveShell)->run();

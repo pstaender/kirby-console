@@ -1,0 +1,22 @@
+{
+    "name": "pstaender/kirby-console",
+    "description": "Enables kirby access from the psysh REPL",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Zeitpulse\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Philipp Staender",
+            "email": "pstaender@mailbox.org"
+        }
+    ],
+    "bin": [
+        "bin/kirbyconsole"
+      ],
+    "require": {
+        "psy/psysh": "@stable"
+    }
+}
