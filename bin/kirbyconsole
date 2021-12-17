@@ -31,8 +31,6 @@ if (!empty($email)) {
     $startupMessage .= " – $email";
 }
 
-$shell = Zeitpulse\KirbyInteractiveShell::shell([
+Zeitpulse\KirbyInteractiveShell::shell([
     'startupMessage' => $startupMessage,
-]);
-$shell->addInput("\$k = kirby(); echo '';", $silent = true);
-$shell->run();
+])->run();

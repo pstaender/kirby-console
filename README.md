@@ -21,13 +21,6 @@ Go to your kirby project, then run:
 To work with kirby:
 
 ```sh
-    >>> $k->version()
-    => "3.6.1.1"
-```
-
-Of course, you can also use the global `kirby`-function (`$k` is just a shorthand-variable):
-
-```sh
     >>> kirby()->version()
     => "3.6.1.1"
 ```
