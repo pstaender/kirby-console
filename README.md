@@ -1,7 +1,7 @@
 # Kirby Console
 ## Enables kirby access from the psysh REPL
 
-Install:
+### Installation
 
 ```sh
     $ composer require pstaender/kirby-console --dev
