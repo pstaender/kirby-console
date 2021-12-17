@@ -2,31 +2,10 @@
 
 namespace Zeitpulse;
 
-use Psy\Configuration;
-use Psy\Shell;
-
-class KirbyInteractiveShell
+final class KirbyInteractiveShell
 {
-    private static $shell_config = [];
-
-    private $shell = null;
-
-    public function run()
+    public static function shell($config = [])
     {
-        return $this->shell()->run();
+        return new \Psy\Shell(new \Psy\Configuration($config));
     }
-
-    private function shell()
-    {
-        $this->shell = new Shell($this->shellConfig());
-        return $this->shell;
-    }
-
-    private function shellConfig()
-    {
-        $shellConfig = self::$shell_config;
-        $shellConfig['startupMessage'] = "Kirby v" . kirby()->version();
-        return new Configuration($shellConfig);
-    }
-
 }

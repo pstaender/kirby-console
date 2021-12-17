@@ -10,9 +10,29 @@ if (file_exists(getcwd() . '/vendor/autoload.php')) {
 }
 
 if (php_sapi_name() !== 'cli') {
-    exit('This script is only allowed to run on cli');
+    exit('This script can only be executed on cli');
 }
 
-new Kirby();
+$kirby = new Kirby();
 
-(new Zeitpulse\KirbyInteractiveShell)->run();
+// display help and exit?
+array_filter($argv, function ($arg) use ($argv) {
+    if ($arg === '-h' || $arg === '--help') {
+        exit("Usage: ${argv[0]} (userEmail)\n");
+    }
+    return true;
+});
+
+$startupMessage = "Kirby v" . kirby()->version();
+
+$email = $argv[1] ?? null;
+if (!empty($email)) {
+    $kirby->impersonate($email);
+    $startupMessage .= " – $email";
+}
+
+$shell = Zeitpulse\KirbyInteractiveShell::shell([
+    'startupMessage' => $startupMessage,
+]);
+$shell->addInput("\$k = kirby(); echo '';", $silent = true);
+$shell->run();
