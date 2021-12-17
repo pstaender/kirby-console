@@ -4,7 +4,7 @@
 Install:
 
 ```sh
-    $  composer require-dev pstaender/kirby-console
+    $ composer require pstaender/kirby-console --dev
 ```
 
 ### Usage
