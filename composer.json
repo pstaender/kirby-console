@@ -4,7 +4,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Zeitpulse\\": "src/"
+            "Zeitpulse\\KirbyInteractiveShell\\": "src/"
         }
     },
     "authors": [
@@ -17,6 +17,7 @@
         "bin/kirbyconsole"
       ],
     "require": {
+        "php": ">=8.0",
         "psy/psysh": "@stable"
     }
 }

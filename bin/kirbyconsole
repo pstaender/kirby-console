@@ -25,12 +25,12 @@ array_filter($argv, function ($arg) use ($argv) {
 
 $startupMessage = "Kirby v" . kirby()->version();
 
-$email = $argv[1] ?? null;
+$email = $argv[1] ?? '';
 if (!empty($email)) {
     $kirby->impersonate($email);
-    $startupMessage .= " – $email";
+    $startupMessage .= " – " . kirby()->user()->email();
 }
 
-Zeitpulse\KirbyInteractiveShell::shell([
+Zeitpulse\KirbyInteractiveShell\Shell::shell([
     'startupMessage' => $startupMessage,
-])->run();
+], impersonate: $email)->run();

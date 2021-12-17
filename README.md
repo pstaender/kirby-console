@@ -27,13 +27,30 @@ To work with kirby:
 
 #### Impersonate
 
-The first argument can be the email of the user you want to work with (is required for permission-depending stuff like editing):
+The first argument can be the email of the user you want to work with (required for permission-depending stuff like editing):
 
 ```sh
-    $ ./vendor/bin/kirbyconsole admin@server.local
+    $ ./vendor/bin/kirbyconsole kirby
     Psy Shell v0.11.0 (PHP 8.0.13 — cli) by Justin Hileman
-    Kirby v3.6.1.1 – admin@server.local
-    >>>
+    Kirby v3.6.1.1 – kirby@getkirby.com
+    >>> kirby()->user()->email()
+    => "kirby@getkirby.com"
+```
+
+#### Reload
+
+Any change on kirby content requires reloading (code changes may be also).
+
+The kirby instance can be reloaded with the `reload` command:
+
+```sh
+    >>> reload
+```
+
+To check out the other helpful commands the psysh REPL provides:
+
+```sh
+    >>> help
 ```
 
 ### License
