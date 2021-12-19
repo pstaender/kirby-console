@@ -11,7 +11,7 @@ require getcwd() . '/kirby/bootstrap.php';
 
 if (getcwd() !== realpath(__DIR__.'/../../../..')) {
     // this is the case if `kconsole` is used from global composer installation
-    require __DIR__.'/../../../autoload.php';
+    require '/Users/philipp/.composer/vendor/autoload.php';
 }
 if (file_exists(getcwd() . '/vendor/autoload.php')) {
     require getcwd() . '/vendor/autoload.php';
@@ -26,11 +26,28 @@ $displayStartupMessage = true;
 
 $kirby = new Kirby();
 
+function displayConsoleHelp() {
+    $usage = "Usage: kconsole [user] [switches…]\n";
+    $cmds = [
+        '-h --help' => 'displays help',
+        '--write-exit-status-to-file' => 'this internal option is required to label a restart (for kconsole)',
+    ];
+    $maxLength = max(array_map(function($v) {
+        return strlen($v);
+    }, array_keys($cmds)));
+    echo $usage . "\nSwitches:\n\n";
+    foreach($cmds as $switch => $description) {
+        echo str_pad($switch, $maxLength + 3) . $description . "\n";
+    }
+    echo "\n";
+}
+
 
 // display help and exit?
 foreach ($argv as $arg) {
     if ($arg === '-h' || $arg === '--help') {
-        exit("Usage: ${argv[0]} (userEmail)\n");
+        displayConsoleHelp();
+        exit();
     }
     if (str_starts_with($arg, '--write-exit-status-to-file=')) {
         $writeExitStatusToFile = explode('=', $arg)[1];

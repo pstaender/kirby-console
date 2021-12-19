@@ -29,7 +29,7 @@ class ReloadCommand extends Command
         if (!empty($this->impersonate)) {
             $kirby->impersonate($this->impersonate);
         }
-        echo "reloaded\n";
+        echo "reloaded kirby()\n";
         return 0;
     }
 }

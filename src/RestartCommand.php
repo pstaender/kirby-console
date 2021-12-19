@@ -28,7 +28,6 @@ class RestartCommand extends Command
         if (!empty($this->exitStatusFile)) {
             file_put_contents($this->exitStatusFile, 'restarting');
         }
-        throw new \Psy\Exception\BreakException('Restarting...');
-        // throw new \Psy\Exception\BreakException('bla', 512);
+        throw new \Psy\Exception\BreakException('Restarting REPL');
     }
 }
