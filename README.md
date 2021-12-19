@@ -24,6 +24,12 @@ Kirby v3.6.1.1
 >>>
 ```
 
+Or if installed via `global require` just with:
+
+```sh
+$ kconsole
+```
+
 To work with kirby:
 
 ```sh
@@ -36,7 +42,7 @@ To work with kirby:
 The first argument can be the email of the user you want to work with (required for permission-depending stuff like editing):
 
 ```sh
-$ ./vendor/bin/kirbyconsole kirby
+$ kconsole kirby
 Psy Shell v0.11.0 (PHP 8.0.13 — cli) by Justin Hileman
 Kirby v3.6.1.1 – kirby@getkirby.com
 >>> kirby()->user()->email()
