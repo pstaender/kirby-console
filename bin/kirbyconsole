@@ -13,24 +13,35 @@ if (php_sapi_name() !== 'cli') {
     exit('This script can only be executed on cli');
 }
 
+$writeExitStatusToFile = '';
+$displayStartupMessage = true;
+
 $kirby = new Kirby();
 
+
 // display help and exit?
-array_filter($argv, function ($arg) use ($argv) {
+foreach ($argv as $arg) {
     if ($arg === '-h' || $arg === '--help') {
         exit("Usage: ${argv[0]} (userEmail)\n");
     }
-    return true;
-});
+    if (str_starts_with($arg, '--write-exit-status-to-file=')) {
+        $writeExitStatusToFile = explode('=', $arg)[1];
+    }
+    if ($arg === '--no-startup-message') {
+        $displayStartupMessage = false;
+    }
+}
 
 $startupMessage = "Kirby v" . kirby()->version();
 
 $email = $argv[1] ?? '';
-if (!empty($email)) {
+if (!empty($email) && ($email[0] !== '-')) {
     $kirby->impersonate($email);
     $startupMessage .= " – " . kirby()->user()->email();
+} else {
+    $email = '';
 }
 
 Zeitpulse\KirbyInteractiveShell\Shell::shell([
-    'startupMessage' => $startupMessage,
-], impersonate: $email)->run();
+    'startupMessage' => $displayStartupMessage ? $startupMessage : null,
+], impersonate: $email, writeExitStatusToFile: $writeExitStatusToFile)->run();

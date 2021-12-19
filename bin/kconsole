@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+SCRIPTDIR=`dirname "$BASH_SOURCE"`
+EXIT_STATUS_FILE=$HOME/.kirbyconsole
+
+echo -n >$EXIT_STATUS_FILE
+$SCRIPTDIR/kirbyconsole "$@" --write-exit-status-to-file="$EXIT_STATUS_FILE"
+while [ -s ${EXIT_STATUS_FILE} ]; do
+  echo -n >$EXIT_STATUS_FILE
+  $SCRIPTDIR/kirbyconsole "$@" --write-exit-status-to-file="$EXIT_STATUS_FILE" --no-startup-message;
+done

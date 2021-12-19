@@ -12,7 +12,7 @@
 Go to your kirby project, then run:
 
 ```sh
-    $ ./vendor/bin/kirbyconsole
+    $ ./vendor/bin/kconsole
     Psy Shell v0.11.0 (PHP 8.0.13 — cli) by Justin Hileman
     Kirby v3.6.1.1
     >>>
@@ -39,19 +39,34 @@ The first argument can be the email of the user you want to work with (required 
 
 #### Reload
 
-Any change on kirby content requires reloading (code changes may be also).
-
-The kirby instance can be reloaded with the `reload` command:
+Any content change on kirby requires reloading. The kirby instance can be reloaded with the `reload` command:
 
 ```sh
     >>> reload
 ```
 
-To check out the other helpful commands the psysh REPL provides:
+#### Restart
+
+If you want to test out instantly code changes you made use `restart` to restart the REPL:
+
+```sh
+    >>> restart
+    Exit:  Restarting...
+    Psy Shell v0.11.0 (PHP 8.0.13 — cli) by Justin Hileman
+    >>>
+```
+
+To check out other helpful commands the psysh REPL provides:
 
 ```sh
     >>> help
 ```
+
+### Troubleshooting
+
+If `kconsole` can not be started, try `kirby-console` instead. Or - if possible - use a bash compatible cli.
+
+`kconsole` is a bash scripts that allows to restart the whole REPL. The php script requires a bash-script-workaround to make a restart possible ([read here why](https://github.com/bobthecow/psysh/issues/416)).
 
 ### License
 

@@ -14,7 +14,8 @@
         }
     ],
     "bin": [
-        "bin/kirbyconsole"
+        "bin/kirbyconsole",
+        "bin/kconsole"
       ],
     "require": {
         "php": ">=8.0",
