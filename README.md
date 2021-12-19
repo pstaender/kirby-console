@@ -56,6 +56,16 @@ If you want to test out instantly code changes you made use `restart` to restart
     >>>
 ```
 
+#### r : Restart or Reload
+
+Or just use the lazy `r`-alias. If `restart` is available a restart will be triggered, else a `reload`:
+
+```sh
+    >>> r
+    Exit:  Restarting...
+    …
+```
+
 To check out other helpful commands the psysh REPL provides:
 
 ```sh
