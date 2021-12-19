@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+set -e
+
 SCRIPTDIR=`dirname "$BASH_SOURCE"`
 EXIT_STATUS_FILE=$HOME/.kirbyconsole
 

@@ -1,12 +1,20 @@
 #!/usr/bin/env php
 <?php
 
+$kirbyBootstrap = getcwd() . '/kirby/bootstrap.php';
+if (!file_exists($kirbyBootstrap )) {
+    echo ("Couldn't find the kirby bootstrap file. Are you inside a valid kirby project? Missing file: $kirbyBootstrap \n");
+    exit(1);
+}
+
 require getcwd() . '/kirby/bootstrap.php';
 
+if (getcwd() !== realpath(__DIR__.'/../../../..')) {
+    // this is the case if `kconsole` is used from global composer installation
+    require __DIR__.'/../../../autoload.php';
+}
 if (file_exists(getcwd() . '/vendor/autoload.php')) {
     require getcwd() . '/vendor/autoload.php';
-} else {
-    require __DIR__ . '/../vendor/autoload.php';
 }
 
 if (php_sapi_name() !== 'cli') {
