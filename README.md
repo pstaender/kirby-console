@@ -4,12 +4,6 @@
 ### Installation
 
 ```sh
-$ composer require pstaender/kirby-console
-```
-
-To install project-independent:
-
-```sh
 $ composer global require pstaender/kirby-console
 ```
 
@@ -18,19 +12,13 @@ $ composer global require pstaender/kirby-console
 Go to your kirby project, then run:
 
 ```sh
-$ ./vendor/bin/kconsole
+$ kconsole
 Psy Shell v0.12.4 (PHP 8.2.22 — cli) by Justin Hileman
 Kirby v4.1.0
 >>>
 ```
 
-Or if installed via `global require` just with:
-
-```sh
-$ kconsole
-```
-
-To work with kirby:
+Work with `kirby()` as you used to know:
 
 ```sh
 >>> kirby()->version()
@@ -86,7 +74,7 @@ To check out other helpful commands the psysh REPL provides:
 
 ### Troubleshooting
 
-If `kconsole` can not be started, try `kirbyconsole` instead. Or - if possible - use a bash compatible cli.
+If `kconsole` can not be started, try `kirbyconsole` instead.
 
 `kconsole` is a bash scripts that allows to restart the whole REPL. The php script requires a bash-script-workaround to make a restart possible ([read here why](https://github.com/bobthecow/psysh/issues/416)).
 
