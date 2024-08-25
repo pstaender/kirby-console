@@ -20,11 +20,20 @@ class RestartCommand extends Command
 
     protected function configure()
     {
-        $this->setDescription('Restarts the REPL, i.e. reloads all files (php etc)');
+        $this->setDescription(
+            'Restarts the REPL, i.e. reloads all files (php etc)'
+        );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    public function getName(): ?string
     {
+        return self::$defaultName;
+    }
+
+    protected function execute(
+        InputInterface $input,
+        OutputInterface $output
+    ): int {
         if (!empty($this->exitStatusFile)) {
             file_put_contents($this->exitStatusFile, 'restarting');
         }
