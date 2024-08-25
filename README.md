@@ -1,10 +1,10 @@
 # Kirby Console
-## Enables kirby access from the psysh REPL
+## REPL for Kirby CMS
 
 ### Installation
 
 ```sh
-$ composer require pstaender/kirby-console --dev
+$ composer require pstaender/kirby-console
 ```
 
 To install project-independent:
@@ -19,8 +19,8 @@ Go to your kirby project, then run:
 
 ```sh
 $ ./vendor/bin/kconsole
-Psy Shell v0.11.0 (PHP 8.0.13 — cli) by Justin Hileman
-Kirby v3.6.1.1
+Psy Shell v0.12.4 (PHP 8.2.22 — cli) by Justin Hileman
+Kirby v4.1.0
 >>>
 ```
 
@@ -34,7 +34,7 @@ To work with kirby:
 
 ```sh
 >>> kirby()->version()
-=> "3.6.1.1"
+=> "4.1.0"
 ```
 
 #### Impersonate
@@ -43,8 +43,8 @@ The first argument can be the email of the user you want to work with (required 
 
 ```sh
 $ kconsole kirby
-Psy Shell v0.11.0 (PHP 8.0.13 — cli) by Justin Hileman
-Kirby v3.6.1.1 – kirby@getkirby.com
+Psy Shell v0.12.4 (PHP 8.2.22 — cli) by Justin Hileman
+Kirby v4.1.0 – kirby@getkirby.com
 >>> kirby()->user()->email()
 => "kirby@getkirby.com"
 ```
@@ -64,7 +64,7 @@ If you want to test out instantly code changes you made use `restart` to restart
 ```sh
 >>> restart
 Exit:  Restarting...
-Psy Shell v0.11.0 (PHP 8.0.13 — cli) by Justin Hileman
+Psy Shell v0.12.4 (PHP 8.2.22 — cli) by Justin Hileman
 >>>
 ```
 
@@ -86,7 +86,7 @@ To check out other helpful commands the psysh REPL provides:
 
 ### Troubleshooting
 
-If `kconsole` can not be started, try `kirby-console` instead. Or - if possible - use a bash compatible cli.
+If `kconsole` can not be started, try `kirbyconsole` instead. Or - if possible - use a bash compatible cli.
 
 `kconsole` is a bash scripts that allows to restart the whole REPL. The php script requires a bash-script-workaround to make a restart possible ([read here why](https://github.com/bobthecow/psysh/issues/416)).
 

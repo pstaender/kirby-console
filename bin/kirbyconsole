@@ -1,19 +1,22 @@
 #!/usr/bin/env php
 <?php
-
 $kirbyBootstrap = getcwd() . '/kirby/bootstrap.php';
-if (!file_exists($kirbyBootstrap )) {
-    echo ("Couldn't find the kirby bootstrap file. Are you inside a valid kirby project? Missing file: $kirbyBootstrap \n");
+if (!file_exists($kirbyBootstrap)) {
+    echo "Couldn't find the kirby bootstrap file. Are you inside a valid kirby project? Missing file: $kirbyBootstrap \n";
     exit(1);
 }
 
 require getcwd() . '/kirby/bootstrap.php';
 
-if (getcwd() !== realpath(__DIR__.'/../../../..')) {
-    // this is the case if `kconsole` is used from global composer installation
-    require '/Users/philipp/.composer/vendor/autoload.php';
-}
-if (file_exists(getcwd() . '/vendor/autoload.php')) {
+$homedir = $_SERVER['HOME'] ?? getenv('HOME');
+
+if (file_exists($homedir . '/.composer/vendor/autoload.php')) {
+    // if is used from global composer installation
+    require $homedir . '/.composer/vendor/autoload.php';
+} elseif (file_exists($homedir . '/.config/composer/vendor/autoload.php')) {
+    require $homedir . '/.config/composer/vendor/autoload.php';
+} elseif (file_exists(getcwd() . '/vendor/autoload.php')) {
+    // called from kirby project
     require getcwd() . '/vendor/autoload.php';
 }
 
@@ -26,22 +29,25 @@ $displayStartupMessage = true;
 
 $kirby = new Kirby();
 
-function displayConsoleHelp() {
+function displayConsoleHelp()
+{
     $usage = "Usage: kconsole [user] [switches…]\n";
     $cmds = [
         '-h --help' => 'displays help',
-        '--write-exit-status-to-file' => 'this internal option is required to label a restart (for kconsole)',
+        '--write-exit-status-to-file' =>
+            'this internal option is required to label a restart (for kconsole)',
     ];
-    $maxLength = max(array_map(function($v) {
-        return strlen($v);
-    }, array_keys($cmds)));
+    $maxLength = max(
+        array_map(function ($v) {
+            return strlen($v);
+        }, array_keys($cmds))
+    );
     echo $usage . "\nSwitches:\n\n";
-    foreach($cmds as $switch => $description) {
+    foreach ($cmds as $switch => $description) {
         echo str_pad($switch, $maxLength + 3) . $description . "\n";
     }
     echo "\n";
 }
-
 
 // display help and exit?
 foreach ($argv as $arg) {
@@ -57,16 +63,21 @@ foreach ($argv as $arg) {
     }
 }
 
-$startupMessage = "Kirby v" . kirby()->version();
+$startupMessage = 'Kirby v' . kirby()->version();
 
 $email = $argv[1] ?? '';
-if (!empty($email) && ($email[0] !== '-')) {
+if (!empty($email) && $email[0] !== '-') {
     $kirby->impersonate($email);
-    $startupMessage .= " – " . kirby()->user()->email();
+    $startupMessage .= ' – ' . kirby()->user()->email();
 } else {
     $email = '';
 }
 
-Zeitpulse\KirbyInteractiveShell\Shell::shell([
-    'startupMessage' => $displayStartupMessage ? $startupMessage : null,
-], impersonate: $email, writeExitStatusToFile: $writeExitStatusToFile)->run();
+Zeitpulse\KirbyInteractiveShell\Shell::shell(
+    [
+        'startupMessage' => $displayStartupMessage ? $startupMessage : null,
+    ],
+    impersonate: $email,
+    writeExitStatusToFile: $writeExitStatusToFile
+)->run();
+

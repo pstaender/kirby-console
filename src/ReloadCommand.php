@@ -18,13 +18,20 @@ class ReloadCommand extends Command
         return $this;
     }
 
+    public function getName(): ?string
+    {
+        return self::$defaultName;
+    }
+
     protected function configure()
     {
         $this->setDescription('Reloads the kirby instance');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
+    protected function execute(
+        InputInterface $input,
+        OutputInterface $output
+    ): int {
         $kirby = new \Kirby();
         if (!empty($this->impersonate)) {
             $kirby->impersonate($this->impersonate);

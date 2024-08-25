@@ -1,6 +1,6 @@
 {
     "name": "pstaender/kirby-console",
-    "description": "Enables kirby access from the psysh REPL",
+    "description": "kirby REPL",
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -16,9 +16,9 @@
     "bin": [
         "bin/kirbyconsole",
         "bin/kconsole"
-      ],
+    ],
     "require": {
         "php": ">=8.0",
-        "psy/psysh": "@stable"
+        "psy/psysh": "^0.12.4"
     }
 }
