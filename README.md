@@ -1,7 +1,11 @@
 # Kirby Console
-## REPL for Kirby CMS
+## Your REPL for Kirby CMS projects
+
+Ever wanted to experiment with your Kirby project on the fly, right from the command line? With Kirby Console, you can inspect and alter your project data instantly, no need to query the website!
 
 ### Installation
+
+The easiest way to get started is by installing Kirby Console globally with composer:
 
 ```sh
 $ composer global require pstaender/kirby-console
@@ -9,16 +13,21 @@ $ composer global require pstaender/kirby-console
 
 ### Usage
 
-Go to your kirby project, then run:
+Jump into your Kirby project folder and run:
 
 ```sh
 $ kconsole
+```
+
+You’ll be greeted with something like:
+
+```
 Psy Shell v0.12.4 (PHP 8.2.22 — cli) by Justin Hileman
 Kirby v4.1.0
 >>>
 ```
 
-Work with `kirby()` as you used to know:
+Work with `kirby()`, `page()` and `site()` as you used to know:
 
 ```sh
 >>> kirby()->version()
@@ -27,7 +36,7 @@ Work with `kirby()` as you used to know:
 
 #### Impersonate
 
-The first argument can be the email of the user you want to work with (required for permission-depending stuff like editing):
+Need to work as a specific user? Pass the user’s email as the first argument (handy for permission-restricted tasks like editing):
 
 ```sh
 $ kconsole kirby
@@ -37,17 +46,21 @@ Kirby v4.1.0 – kirby@getkirby.com
 => "kirby@getkirby.com"
 ```
 
-#### Reload
+### Kirby REPL Commands
 
-Any content change on kirby requires reloading. The kirby instance can be reloaded with the `reload` command:
+#### r
+
+Restart or Reload: The handy `r`-alias will use `restart` if available, a `reload` othewise:
 
 ```sh
-    >>> reload
+>>> r
+Exit:  Restarting...
+…
 ```
 
-#### Restart
+#### restart
 
-If you want to test out instantly code changes you made use `restart` to restart the REPL:
+Restart your Kirby instance after code or content changes with:
 
 ```sh
 >>> restart
@@ -56,17 +69,17 @@ Psy Shell v0.12.4 (PHP 8.2.22 — cli) by Justin Hileman
 >>>
 ```
 
-#### r : Restart or Reload
+#### reload
 
-Or just use the lazy `r`-alias. If `restart` is available a restart will be triggered, else a `reload`:
+Refresh your Kirby instance after content changes with:
 
 ```sh
->>> r
-Exit:  Restarting...
-…
+    >>> reload
 ```
 
-To check out other helpful commands the psysh REPL provides:
+#### help
+
+There are even more psysh build-in command, check out with:
 
 ```sh
 >>> help
@@ -74,9 +87,9 @@ To check out other helpful commands the psysh REPL provides:
 
 ### Troubleshooting
 
-If `kconsole` can not be started, try `kirbyconsole` instead.
+Can't get `kconsole` to start (can happen und not-bash-supporting-systems like windows etc)? Try `kirbyconsole` instead.
 
-`kconsole` is a bash scripts that allows to restart the whole REPL. The php script requires a bash-script-workaround to make a restart possible ([read here why](https://github.com/bobthecow/psysh/issues/416)).
+`kconsole` is a bash script wrapper to allow to restart the whole REPL. ([You can read here why I had to build that workaround](https://github.com/bobthecow/psysh/issues/416)).
 
 ### License
 
