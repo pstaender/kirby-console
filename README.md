@@ -55,7 +55,6 @@ Restart or Reload: The handy `r`-alias will use `restart` if available, a `reloa
 ```sh
 >>> r
 Exit:  Restarting...
-…
 ```
 
 #### restart
@@ -74,7 +73,7 @@ Psy Shell v0.12.4 (PHP 8.2.22 — cli) by Justin Hileman
 Refresh your Kirby instance after content changes with:
 
 ```sh
-    >>> reload
+>>> reload
 ```
 
 #### help
